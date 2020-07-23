@@ -30,7 +30,7 @@ class YahooFinance
   # true.
   def initialize(concurrent_connections=20, memoize_requests=false)
     @hydra = Typhoeus::Hydra.new(:max_concurrency => concurrent_connections)
-    @hydra.disable_memoization unless memoize_requests
+    Typhoeus::Config.memoize = memoize_requests
   end
 
   # Run any pending historic data queries in the queue and potentially
